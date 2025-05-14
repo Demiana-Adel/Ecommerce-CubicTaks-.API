@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce(CubicTaks).API", "Ecommerce(CubicTaks).API\Ecommerce(CubicTaks).API.csproj", "{EE697EA6-0466-4039-A1FD-AEB472E331CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE697EA6-0466-4039-A1FD-AEB472E331CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE697EA6-0466-4039-A1FD-AEB472E331CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE697EA6-0466-4039-A1FD-AEB472E331CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE697EA6-0466-4039-A1FD-AEB472E331CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8BD00FC2-E4F0-4FF4-ADA6-DF5432948E34}
+	EndGlobalSection
+EndGlobal
