@@ -34,8 +34,7 @@ namespace Ecommerce_CubicTaks_.Context
                 .HasRequired(co => co.Order)
                 .WithMany(o => o.CustomerOrders)
                 .HasForeignKey(co => co.OrderId);
-            modelBuilder.Types<BaseEntity>()
-             .Configure(config => config.Ignore(e => e.IsDeleted)); // For now, we can't apply a global query filter in EF6
+       
 
             base.OnModelCreating(modelBuilder);
         }

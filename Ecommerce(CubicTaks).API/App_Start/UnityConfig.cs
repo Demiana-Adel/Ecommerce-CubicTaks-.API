@@ -2,9 +2,10 @@ using Ecommerce_CubicTaks_.Application.Contract;
 using Ecommerce_CubicTaks_.Application.Service;
 using Ecommerce_CubicTaks_.Context;
 using Ecommerce_CubicTaks_.Infrastructure;
-using System.Web.Mvc;
+using System.Web.Http;
 using Unity;
-using Unity.Mvc5;
+using Unity.Lifetime;
+using Unity.WebApi;
 
 namespace Ecommerce_CubicTaks_.API
 {
@@ -12,24 +13,24 @@ namespace Ecommerce_CubicTaks_.API
     {
         public static void RegisterComponents()
         {
-            var container = new UnityContainer();
-
-            // Register DbContext
-            container.RegisterType<ApplicationDbContext>();
+			var container = new UnityContainer();
+            container.RegisterType<ApplicationDbContext>(new HierarchicalLifetimeManager());
 
             // Repositories
             container.RegisterType<ICustomerRepository, CustomerRepository>();
+            container.RegisterType<ICustomerRepository, CustomerRepository>();
             container.RegisterType<IOrderRepository, OrderRepository>();
-            container.RegisterType<ICustomerOrderRepository, CustomerOrderRepository>();
+            // register all your components with the container here
+            container.RegisterType<ICustomerRepository, CustomerRepository>(new HierarchicalLifetimeManager());
 
-            // Services
-            container.RegisterType<ICustomerService, CustomerService>();
-            container.RegisterType<IOrderService, OrderService>();
+            // e.g. container.RegisterType<ITestService, TestService>();
 
-            // AutoMapper (optional if you're using profiles)
-            // container.RegisterInstance<IMapper>(AutoMapperConfiguration.Initialize());
 
-            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+            // Register your services here:
+            container.RegisterType<ICustomerService, CustomerService>(new HierarchicalLifetimeManager());
+
+            // Set Web API Dependency Resolver
+            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }
 }

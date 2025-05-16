@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Ecommerce_CubicTaks_.Application.Service
 {
@@ -76,11 +77,13 @@ namespace Ecommerce_CubicTaks_.Application.Service
 
         public async Task<ICollection<CustomerDto>> GetAllCustomers()
         {
-            var all = await _customerRepository.GetAllAsync();
-            return all
+            var customers = await _customerRepository.GetAllAsync();
+
+            var list = await customers
                 .Where(c => !c.IsDeleted)
-                .Select(c => _mapper.Map<CustomerDto>(c))
-                .ToList();
+                .ToListAsync(); // Run SQL now
+
+            return list.Select(c => _mapper.Map<CustomerDto>(c)).ToList(); // Safe
         }
 
         public async Task<ResultDataList<CustomerDto>> GetAllPagination(int items, int pageNumber)
