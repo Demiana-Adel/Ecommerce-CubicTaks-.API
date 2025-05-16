@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer\CreateCustomerDto.cs" />
+    <Compile Include="User\CreateUserDto.cs" />
     <Compile Include="Customer\CustomerDto.cs" />
     <Compile Include="Customer\UpdateCustomerDto.cs" />
     <Compile Include="Order\CreateOrderDto.cs" />
@@ -51,6 +53,8 @@
     <Compile Include="Order\UpdateOrderDto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\LoginModel.cs" />
+    <Compile Include="User\UserDtocs.cs" />
     <Compile Include="ViewResult\ResultDataList.cs" />
     <Compile Include="ViewResult\ResultView.cs" />
   </ItemGroup>

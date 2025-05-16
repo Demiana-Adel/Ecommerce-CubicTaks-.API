@@ -17,6 +17,9 @@ using Ecommerce_CubicTaks_.Context;
 using AutoMapper;
 using Ecommerce_CubicTaks_.Application.Mapper;
 using Microsoft.Win32;
+using FluentValidation.WebApi;
+using Ecommerce_CubicTaks_.API.FluentValidation;
+using Ecommerce_CubicTaks_.Application.Service.Jwt;
 
 namespace Ecommerce_CubicTaks_.API
 {
@@ -37,7 +40,12 @@ namespace Ecommerce_CubicTaks_.API
         protected void Application_Start()
         {
             var config = GlobalConfiguration.Configuration;
-            AreaRegistration.RegisterAllAreas();
+            // ✅ Register FluentValidation (auto-discovers validators)
+            // ✅ Manually assign the validator factory
+            FluentValidationModelValidatorProvider.Configure(config, provider =>
+            {
+                provider.ValidatorFactory = new CustomValidatorFactory();
+            }); AreaRegistration.RegisterAllAreas();
             //  Register routes and other ASP.NET MVC
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
@@ -56,6 +64,9 @@ namespace Ecommerce_CubicTaks_.API
             builder.RegisterType<testserice>().As<Itestserice>();
             builder.RegisterType<CustomerService>().As<ICustomerService>();
             builder.RegisterType<OrderService>().As<IOrderService>();
+            builder.RegisterType<JwtService>().As<IJwtService>().SingleInstance();
+            builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
 
             // 3. AutoMapper registration
             var mapperConfig = new MapperConfiguration(cfg =>
@@ -72,6 +83,9 @@ namespace Ecommerce_CubicTaks_.API
 
             // 6. Register routes and other Web API config
             GlobalConfiguration.Configure(WebApiConfig.Register);
+           
+
+
         }
     }
     }

@@ -10,7 +10,10 @@ namespace Ecommerce_CubicTaks_.API
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
+            // Global error handler
+            config.Filters.Add(new GlobalExceptionFilter());
+            //Log all requests
+            config.MessageHandlers.Add(new LoggingHandler());
             // Web API routes
             config.MapHttpAttributeRoutes();
 

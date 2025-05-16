@@ -27,6 +27,12 @@ namespace Ecommerce_CubicTaks_.API.Controllers
         {
             return Ok("Hello from .NET Framework Web API!");
         }
+        [HttpGet]
+        [Route("test-error")]
+        public IHttpActionResult TestError()
+        {
+            throw new Exception("This is a test exception");
+        }
 
 
     }

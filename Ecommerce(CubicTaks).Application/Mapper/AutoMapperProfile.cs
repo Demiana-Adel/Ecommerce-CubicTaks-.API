@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Ecommerce_CubicTaks_.Dto.Customer;
 using Ecommerce_CubicTaks_.Dto.Order;
+using Ecommerce_CubicTaks_.Dto.User;
 using Ecommerce_CubicTaks_.Model.Model;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,9 @@ namespace Ecommerce_CubicTaks_.Application.Mapper
             CreateMap<Order, OrderDto>().ReverseMap();
             CreateMap<CreateOrderDto, Order>();
             CreateMap<UpdateOrderDto, Order>();
+            // User Mappings
+            CreateMap<User, UserDto>();
+            CreateMap<UserDto, User>();
         }
     }
 }

@@ -5,6 +5,7 @@ using Ecommerce_CubicTaks_.Dto.ViewResult;
 using Ecommerce_CubicTaks_.Model.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -125,11 +126,18 @@ namespace Ecommerce_CubicTaks_.Application.Service
         public async Task<ICollection<OrderDto>> GetAllOrders()
         {
             var all = await _orderRepository.GetAllAsync();
-            return all
+
+            // Materialize first to List
+            var list = await all
                 .Where(o => !o.IsDeleted)
-                .Select(o => _mapper.Map<OrderDto>(o))
+                .ToListAsync(); // ✅ SQL executed here
+
+            // Now map in memory
+            return list
+                .Select(o => _mapper.Map<OrderDto>(o)) // ✅ Safe now
                 .ToList();
         }
+
 
         public async Task<ResultDataList<OrderDto>> GetAllPagination(int items, int pageNumber)
         {
